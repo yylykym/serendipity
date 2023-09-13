@@ -1,0 +1,25 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_HOST:127.0.0.1}:${NACOS_PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+  #    gateway:
+  #      routes:
+  #        # 固定路由转发配置 无修改
+  #        - id: openapi
+  #          uri: lb://pig-gateway
+  #          predicates:
+  #            - Path=/v3/api-docs/**
+  #          filters:
+  #            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/$\{path}/v3/api-docs
+  config:
+    import:
+      - nacos:application-@profiles.active@.yml
+      - nacos:${spring.application.name}-@profiles.active@.yml
