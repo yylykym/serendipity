@@ -1,5 +1,6 @@
-package com.akihi.serendipity.core;
+package com.akihi.serendipity.config;
 
+import com.akihi.serendipity.support.password.OAuth2ResourceOwnerPasswordAuthenticationConverter;
 import com.akihi.serendipity.support.handler.AuthenticationFailureEventHandler;
 import com.akihi.serendipity.support.handler.AuthenticationSuccessEventHandler;
 import org.springframework.context.annotation.Bean;
@@ -7,19 +8,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
-import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
-import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.oauth2.server.authorization.web.authentication.*;
-import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector;
+import org.springframework.security.oauth2.server.resource.introspection.SpringOpaqueTokenIntrospector;
+import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationConverter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -29,7 +31,10 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @Configuration
+@EnableWebSecurity
 public class AuthorizationServerConfiguration {
+
+
 
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
@@ -73,8 +78,7 @@ public class AuthorizationServerConfiguration {
                             .errorResponseHandler(new AuthenticationFailureEventHandler());// 登录失败处理器
                 }).clientAuthentication(oAuth2ClientAuthenticationConfigurer -> // 个性化客户端认证
                         oAuth2ClientAuthenticationConfigurer.errorResponseHandler(new AuthenticationFailureEventHandler()))// 处理客户端认证异常
-                .authorizationEndpoint(authorizationEndpoint -> authorizationEndpoint// 授权码端点个性化confirm页面
-                        .consentPage("")));
+             );
 
         AntPathRequestMatcher[] requestMatchers = new AntPathRequestMatcher[] {
                 AntPathRequestMatcher.antMatcher("/token/**"), AntPathRequestMatcher.antMatcher("/actuator/**"),
@@ -84,7 +88,9 @@ public class AuthorizationServerConfiguration {
                     // 自定义接口、端点暴露
                     authorizeRequests.requestMatchers("/**").permitAll();
                     authorizeRequests.anyRequest().authenticated();
-                });
+                }).oauth2ResourceServer(
+                oauth2 -> oauth2.opaqueToken(token -> token.introspector(new SpringOpaqueTokenIntrospector("1","app","app")))
+                        .bearerTokenResolver(new DefaultBearerTokenResolver()));
 //                .apply(authorizationServerConfigurer.authorizationService(authorizationService)// redis存储token的实现
 //                        .authorizationServerSettings(
 //                                AuthorizationServerSettings.builder().issuer(SecurityConstants.PROJECT_LICENSE).build())
@@ -95,13 +101,15 @@ public class AuthorizationServerConfiguration {
         // 注入自定义授权模式实现
 //        addCustomOAuth2GrantAuthenticationProvider(http);
 
+//        http.authenticationProvider(resourceOwnerPasswordAuthenticationProvider);
+
 
         return http.build();
     }
 
     private AuthenticationConverter accessTokenRequestConverter() {
         return new DelegatingAuthenticationConverter(Arrays.asList(
-//                new OAuth2ResourceOwnerPasswordAuthenticationConverter(),
+                new OAuth2ResourceOwnerPasswordAuthenticationConverter(),
 //                new OAuth2ResourceOwnerSmsAuthenticationConverter(),
                 new OAuth2RefreshTokenAuthenticationConverter(),
                 new OAuth2ClientCredentialsAuthenticationConverter(),
@@ -136,9 +144,9 @@ public class AuthorizationServerConfiguration {
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 // 授权模式
                 // ---- 【客户端模式】
-                .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+                .authorizationGrantType(AuthorizationGrantType.PASSWORD)
                 // 客户端模式直接返回token；不需要回调地址
-                //.redirectUri("...")
+//                .redirectUri("http://127.0.0.1:8001")
                 // 授权范围（当前客户端的角色）
                 .scope("all")
                 // JWT（Json Web Token）配置项

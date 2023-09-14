@@ -16,6 +16,8 @@
         <module>serendipity-gateway</module>
         <module>serendipity-upms</module>
         <module>serendipity-auth</module>
+        <module>serendipity-upms/serendipity-upms-api</module>
+        <module>serendipity-upms/serendipity-upms-biz</module>
     </modules>
 
     <properties>

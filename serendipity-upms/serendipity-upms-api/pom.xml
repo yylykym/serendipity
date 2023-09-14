@@ -3,17 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.akihi</groupId>
-        <artifactId>serendipity</artifactId>
+        <artifactId>serendipity-upms</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>serendipity-common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>serendipity-upms-api</artifactId>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>serendipity-common-bom</module>
-        <module>serendipity-common-security</module>
-    </modules>
+    <dependencies>
+
+    </dependencies>
 
 
 </project>

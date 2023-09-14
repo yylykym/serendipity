@@ -10,6 +10,20 @@
     <properties>
         <serendipity-version>0.0.1-SNAPSHOT</serendipity-version>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.akihi</groupId>
+                <artifactId>serendipity-common-security</artifactId>
+                <version>${serendipity-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.akihi</groupId>
+                <artifactId>serendipity-upms-api</artifactId>
+                <version>${serendipity-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>
