@@ -1,2 +1,11 @@
 server:
   port: 8001
+spring:
+  application:
+    # 应用名称
+    name: oauth2-server-9000
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/auth?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
