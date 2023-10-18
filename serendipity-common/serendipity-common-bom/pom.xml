@@ -22,6 +22,11 @@
                 <artifactId>serendipity-upms-api</artifactId>
                 <version>${serendipity-version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.akihi</groupId>
+                <artifactId>serendipity-common-core</artifactId>
+                <version>${serendipity-version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

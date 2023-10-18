@@ -13,6 +13,7 @@
     <modules>
         <module>serendipity-common-bom</module>
         <module>serendipity-common-security</module>
+        <module>serendipity-common-core</module>
     </modules>
 
 
