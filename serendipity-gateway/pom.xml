@@ -28,6 +28,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.akihi</groupId>
+            <artifactId>serendipity-common-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

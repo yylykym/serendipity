@@ -1,49 +1,53 @@
-package com.akihi.serendipity.common.utils;
+package com.akihi.serendipity.common.core;
 
-import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class R<T> implements Serializable {
 
         private static final long serialVersionUID = 1L;
 
-        private int code;
+        private String code;
 
         private String msg;
+
+        private List<Map<String, String>> errors;
 
         private T data;
 
         public static <T> R<T> ok() {
-            return restResult(null, HttpStatus.OK.value(), null);
+            return restResult(null, "request_success", null);
         }
 
         public static <T> R<T> ok(T data) {
-            return restResult(data, HttpStatus.OK.value(), null);
+            return restResult(data, "request_success", null);
         }
 
         public static <T> R<T> ok(T data, String msg) {
-            return restResult(data, HttpStatus.OK.value(), msg);
+            return restResult(data, "request_success", msg);
         }
 
         public static <T> R<T> failed() {
-            return restResult(null, HttpStatus.INTERNAL_SERVER_ERROR.value(), null);
+            return restResult(null, "request_failed", null);
         }
 
         public static <T> R<T> failed(String msg) {
-            return restResult(null, HttpStatus.INTERNAL_SERVER_ERROR.value(), msg);
+            return restResult(null, "request_failed", msg);
         }
 
         public static <T> R<T> failed(T data) {
-            return restResult(data, HttpStatus.INTERNAL_SERVER_ERROR.value(), null);
+            return restResult(data, "request_failed", null);
         }
 
         public static <T> R<T> failed(T data, String msg) {
-            return restResult(data, HttpStatus.INTERNAL_SERVER_ERROR.value(), msg);
+            return restResult(data, "request_failed", msg);
         }
 
-        public static <T> R<T> restResult(T data, int code, String msg) {
+        public static <T> R<T> restResult(T data, String code, String msg) {
             R<T> apiResult = new R<>();
             apiResult.setCode(code);
             apiResult.setData(data);
@@ -51,11 +55,11 @@ public class R<T> implements Serializable {
             return apiResult;
         }
 
-        public int getCode() {
+        public String getCode() {
             return code;
         }
 
-        public R<T> setCode(int code) {
+        public R<T> setCode(String code) {
             this.code = code;
             return this;
         }
@@ -77,4 +81,13 @@ public class R<T> implements Serializable {
             this.data = data;
             return this;
         }
+
+    public List<Map<String, String>> getErrors() {
+        return errors;
     }
+
+    public R<T> setErrors(List<Map<String, String>> errors) {
+        this.errors = errors;
+        return this;
+    }
+}
