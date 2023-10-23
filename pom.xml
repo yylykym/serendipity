@@ -11,18 +11,17 @@
 
     <name>serendipity</name>
     <description>demo</description>
+
     <modules>
         <module>serendipity-common</module>
         <module>serendipity-gateway</module>
         <module>serendipity-upms</module>
         <module>serendipity-auth</module>
-        <module>serendipity-upms/serendipity-upms-api</module>
-        <module>serendipity-upms/serendipity-upms-biz</module>
     </modules>
 
     <properties>
         <serendipity.version>0.0.1-SNAPSHOT</serendipity.version>
-        <spring-boot.version>3.1.2</spring-boot.version>
+        <spring-boot.version>3.1.4</spring-boot.version>
         <spring-cloud-alibaba.version>2022.0.0.0</spring-cloud-alibaba.version>
         <spring-cloud.version>2022.0.4</spring-cloud.version>
         <snakeyaml.version>2.2</snakeyaml.version>
@@ -40,7 +39,7 @@
 
 
             <dependency>
-                <groupId>com.echo</groupId>
+                <groupId>com.akihi</groupId>
                 <artifactId>serendipity-common-bom</artifactId>
                 <version>${serendipity.version}</version>
                 <type>pom</type>
@@ -84,6 +83,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>
