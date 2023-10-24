@@ -15,6 +15,7 @@
         <module>serendipity-common-bom</module>
         <module>serendipity-common-security</module>
         <module>serendipity-common-core</module>
+        <module>serendipity-common-swagger</module>
     </modules>
 
 

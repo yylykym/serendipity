@@ -17,7 +17,7 @@
 package com.akihi.serendipity.config;
 
 import com.akihi.serendipity.common.core.contant.SecurityConstants;
-import com.akihi.serendipity.support.CustomeOAuth2AccessTokenGenerator;
+import com.akihi.serendipity.support.CustomerOAuth2AccessTokenGenerator;
 import com.akihi.serendipity.support.core.CustomeOAuth2TokenCustomizer;
 import com.akihi.serendipity.support.handler.AuthenticationFailureEventHandler;
 import com.akihi.serendipity.support.handler.AuthenticationSuccessEventHandler;
@@ -30,19 +30,9 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.OAuth2Token;
-import org.springframework.security.oauth2.server.authorization.InMemoryOAuth2AuthorizationService;
-import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
-import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
-import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
-import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
-import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
-import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
-import org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat;
-import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.security.oauth2.server.authorization.token.DelegatingOAuth2TokenGenerator;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2RefreshTokenGenerator;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
@@ -107,7 +97,7 @@ public class AuthorizationServerConfiguration {
 	 */
 	@Bean
 	public OAuth2TokenGenerator<? extends OAuth2Token> oAuth2TokenGenerator() {
-		CustomeOAuth2AccessTokenGenerator accessTokenGenerator = new CustomeOAuth2AccessTokenGenerator();
+		CustomerOAuth2AccessTokenGenerator accessTokenGenerator = new CustomerOAuth2AccessTokenGenerator();
 		// 注入Token 增加关联用户信息
 		accessTokenGenerator.setAccessTokenCustomizer(new CustomeOAuth2TokenCustomizer());
 		return new DelegatingOAuth2TokenGenerator(accessTokenGenerator, new OAuth2RefreshTokenGenerator());

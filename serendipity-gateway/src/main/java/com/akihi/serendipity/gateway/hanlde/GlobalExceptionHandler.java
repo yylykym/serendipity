@@ -19,6 +19,7 @@ package com.akihi.serendipity.gateway.hanlde;
 import com.akihi.serendipity.common.core.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
@@ -38,7 +39,7 @@ import reactor.core.publisher.Mono;
 @Order(-1)
 public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
 
-	private Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+	private final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	private final ObjectMapper objectMapper;
 
@@ -46,8 +47,9 @@ public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
 		this.objectMapper = objectMapper;
 	}
 
+	@Nonnull
 	@Override
-	public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
+	public Mono<Void> handle(ServerWebExchange exchange,@Nonnull Throwable ex) {
 		ServerHttpResponse response = exchange.getResponse();
 
 		if (response.isCommitted()) {

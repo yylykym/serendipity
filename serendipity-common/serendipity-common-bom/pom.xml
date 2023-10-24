@@ -9,6 +9,7 @@
 
     <properties>
         <serendipity-version>0.0.1-SNAPSHOT</serendipity-version>
+        <springdoc.version>2.1.0</springdoc.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -26,6 +27,16 @@
                 <groupId>com.akihi</groupId>
                 <artifactId>serendipity-common-core</artifactId>
                 <version>${serendipity-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

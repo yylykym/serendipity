@@ -32,6 +32,11 @@
             <groupId>com.akihi</groupId>
             <artifactId>serendipity-common-core</artifactId>
         </dependency>
+        <!--接口文档-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

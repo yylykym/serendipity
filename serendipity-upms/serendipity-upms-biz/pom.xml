@@ -20,10 +20,10 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.akihi</groupId>
-            <artifactId>serendipity-common-security</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.akihi</groupId>-->
+<!--            <artifactId>serendipity-common-security</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -31,6 +31,19 @@
         <dependency>
             <groupId>com.akihi</groupId>
             <artifactId>serendipity-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.akihi</groupId>
+            <artifactId>serendipity-common-swagger</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
     </dependencies>
 
