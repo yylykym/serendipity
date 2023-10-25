@@ -1,7 +1,6 @@
 package com.serendipity.common.swagger.config;
 
 import com.serendipity.common.swagger.annotation.EnableDoc;
-import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
@@ -12,6 +11,8 @@ import java.util.Optional;
 /**
  * openapi 配置类
  *
+ * @author lengleng
+ * @date 2023/1/1
  */
 public class OpenAPIDefinitionImportSelector implements ImportBeanDefinitionRegistrar {
 
@@ -21,7 +22,7 @@ public class OpenAPIDefinitionImportSelector implements ImportBeanDefinitionRegi
 	 * @param registry Bean定义注册器
 	 */
 	@Override
-	public void registerBeanDefinitions(AnnotationMetadata metadata,@Nonnull BeanDefinitionRegistry registry) {
+	public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
 		Optional.ofNullable(metadata.getAnnotationAttributes(EnableDoc.class.getName(), true))
 			.map(attrs -> attrs.get("value"))
 			.ifPresent(value -> {

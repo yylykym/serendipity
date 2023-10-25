@@ -73,7 +73,7 @@ class SwaggerDocRegister extends Subscriber<InstancesChangeEvent> {
 				return swaggerUrl;
 			})
 			.collect(Collectors.toSet());
-		System.out.println(swaggerUrlSet);
+
 		swaggerUiConfigProperties.setUrls(swaggerUrlSet);
 	}
 

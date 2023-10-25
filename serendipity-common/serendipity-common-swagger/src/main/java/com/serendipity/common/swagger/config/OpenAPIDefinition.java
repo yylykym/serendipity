@@ -18,21 +18,18 @@ package com.serendipity.common.swagger.config;
 
 import com.serendipity.common.swagger.support.SwaggerProperties;
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.OAuthFlow;
 import io.swagger.v3.oas.models.security.OAuthFlows;
 import io.swagger.v3.oas.models.security.Scopes;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
-import jakarta.annotation.Nonnull;
 import org.springdoc.core.utils.SpringDocUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.http.HttpHeaders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,33 +45,30 @@ import java.util.List;
  * havingValue = "true") 然后在测试配置或者开发配置中添加swagger.enable=true即可开启，生产环境不填则默认关闭Swagger.
  * </p>
  *
+ * @author lengleng
  */
 @ConditionalOnProperty(name = "swagger.enabled", matchIfMissing = true)
 public class OpenAPIDefinition extends OpenAPI implements InitializingBean, ApplicationContextAware {
 
 	private String path;
 
-	private ApplicationContext applicationContext;
-
 	public void setPath(String path) {
 		this.path = path;
 	}
 
-	public OpenAPIDefinition(ApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
-	}
+	private ApplicationContext applicationContext;
 
-//	private SecurityScheme securityScheme(SwaggerProperties swaggerProperties) {
-//		OAuthFlow clientCredential = new OAuthFlow();
-//		clientCredential.setTokenUrl(swaggerProperties.getTokenUrl());
-//		clientCredential.setScopes(new Scopes().addString(swaggerProperties.getScope(), swaggerProperties.getScope()));
-//		OAuthFlows oauthFlows = new OAuthFlows();
-//		oauthFlows.password(clientCredential);
-//		SecurityScheme securityScheme = new SecurityScheme();
-//		securityScheme.setType(SecurityScheme.Type.OAUTH2);
-//		securityScheme.setFlows(oauthFlows);
-//		return securityScheme;
-//	}
+	private SecurityScheme securityScheme(SwaggerProperties swaggerProperties) {
+		OAuthFlow clientCredential = new OAuthFlow();
+		clientCredential.setTokenUrl(swaggerProperties.getTokenUrl());
+		clientCredential.setScopes(new Scopes().addString(swaggerProperties.getScope(), swaggerProperties.getScope()));
+		OAuthFlows oauthFlows = new OAuthFlows();
+		oauthFlows.password(clientCredential);
+		SecurityScheme securityScheme = new SecurityScheme();
+		securityScheme.setType(SecurityScheme.Type.OAUTH2);
+		securityScheme.setFlows(oauthFlows);
+		return securityScheme;
+	}
 
 	@Override
 	public void afterPropertiesSet() {
@@ -88,12 +82,10 @@ public class OpenAPIDefinition extends OpenAPI implements InitializingBean, Appl
 		this.servers(serverList);
 		// 支持参数平铺
 		SpringDocUtils.getConfig().addSimpleTypesForParameterObject(Class.class);
-		this.getServers();
-		String openapi = this.getOpenapi();
 	}
 
 	@Override
-	public void setApplicationContext(@Nonnull ApplicationContext applicationContext) throws BeansException {
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 

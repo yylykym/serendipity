@@ -1,6 +1,5 @@
 package com.serendipity.common.swagger.config;
 
-import jakarta.annotation.Nonnull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.cloud.client.ServiceInstance;
@@ -8,17 +7,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
+ * @author lengleng
+ * @date 2023/1/4
  */
 public class OpenAPIMetadataRegister implements InitializingBean, ApplicationContextAware {
 
 	private ApplicationContext applicationContext;
 
 	private String path;
-
-	public OpenAPIMetadataRegister(ApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
-	}
-
 
 	public void setPath(String path) {
 		this.path = path;
@@ -30,7 +26,7 @@ public class OpenAPIMetadataRegister implements InitializingBean, ApplicationCon
 	 * @throws BeansException 可能抛出的异常
 	 */
 	@Override
-	public void setApplicationContext(@Nonnull ApplicationContext applicationContext) throws BeansException {
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
 	}
 
