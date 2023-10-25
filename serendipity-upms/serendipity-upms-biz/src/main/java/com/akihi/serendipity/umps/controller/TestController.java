@@ -13,9 +13,6 @@ public class TestController {
         return ResponseEntity.internalServerError().body(R.ok());
     }
 
-    @GetMapping("/res2")
-    public String res2(){
-        return "服务a-->资源2";
-    }
+
 
 }

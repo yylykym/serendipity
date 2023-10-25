@@ -5,7 +5,7 @@
 
     <groupId>com.akihi</groupId>
     <artifactId>serendipity</artifactId>
-    <version>${serendipity.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 

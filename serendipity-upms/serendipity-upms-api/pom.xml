@@ -19,6 +19,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.akihi</groupId>
+            <artifactId>serendipity-common-swagger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.akihi</groupId>
+            <artifactId>serendipity-common-core</artifactId>
+        </dependency>
     </dependencies>
 
 

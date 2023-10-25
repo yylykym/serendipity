@@ -1,5 +1,8 @@
 package com.akihi.serendipity.admin.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.MoreObjects;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedBy;
@@ -12,10 +15,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.Objects;
 
-@Entity
-@Table(name = "sys_oauth_client_details")
+@Schema(name = "客户端详情")
+@Entity(name = "sys_oauth_client_details")
 public class SysOauthClientDetails implements Serializable {
 
     @Serial
@@ -27,21 +30,27 @@ public class SysOauthClientDetails implements Serializable {
     /**
      * 客户端ID
      */
+    @Schema(title = "客户端ID")
     @Column(name = "client_id", nullable = false)
     @NotBlank(message = "client_id 不能为空")
+    @JsonProperty("client_id")
     private String clientId;
 
     /**
      * 客户端密钥
      */
+    @Schema(title = "客户端密钥")
     @Column(name = "client_secret", nullable = false)
     @NotBlank(message = "client_secret 不能为空")
+    @JsonProperty("client_secret")
     private String clientSecret;
 
     /**
      * 资源ID
      */
+    @Schema(title = "资源ID")
     @Column(name = "resource_ids", nullable = false)
+    @JsonProperty("resource_ids")
     private String resourceIds;
 
     /**
@@ -51,77 +60,110 @@ public class SysOauthClientDetails implements Serializable {
     /**
      * 授权方式[A,B,C]
      */
+    @Schema(title = "授权方式[A,B,C]")
     @Lob
     @Column(name = "authorized_grant_types", nullable = false)
+    @JsonProperty("authorized_grant_types")
     private List<String> authorizedGrantTypes = new ArrayList<>();
 
     /**
      * 回调地址
      */
+    @Schema(title = "回调地址")
     @Column(name = "web_server_redirect_uri", nullable = false)
+    @JsonProperty("web_server_redirect_uri")
     private String webServerRedirectUri = "";
 
     /**
      * 权限
      */
+    @Schema(title = "权限")
     @Column(name = "authorities", nullable = false)
+    @JsonProperty("authorities")
     private String authorities = "";
 
     /**
      * 请求令牌有效时间
      */
+    @Schema(title = "请求令牌有效时间")
+    @Column(name = "access_token_validity", nullable = false)
+    @JsonProperty("access_token_validity")
     private Integer accessTokenValidity;
 
     /**
      * 刷新令牌有效时间
      */
+    @Schema(title = "刷新令牌有效时间")
+    @Column(name = "refresh_token_validity", nullable = false)
+    @JsonProperty("refresh_token_validity")
     private Integer refreshTokenValidity;
 
     /**
      * 扩展信息
      */
-    private String additionalInformation;
+    @Schema(title = "扩展信息")
+    @Column(name = "additional_info", nullable = false)
+    @JsonProperty("additional_info")
+    private String additionalInfo;
 
     /**
      * 是否自动放行
      */
+    @Schema(title = "是否自动放行")
+    @Column(name = "auto_approve", nullable = false)
+    @JsonProperty("auto_approve")
     private String autoApprove;
 
     /**
      * 删除标记
      */
-    private String delFlag;
+    @Schema(title = "删除标记")
+    @Column(name = "deleted", nullable = false)
+    @JsonProperty("deleted")
+    private String deleted = "0";
 
     /**
      * 创建人
      */
+    @Schema(title = "创建人")
     @CreatedBy
+    @Column(name = "create_by", nullable = false)
+    @JsonProperty("create_by")
     private String createBy;
 
     /**
      * 修改人
      */
+    @Schema(title = "修改人")
     @LastModifiedBy
-    private String updateBy;
+    @Column(name = "last_modified_by", nullable = false)
+    @JsonProperty("last_modified_by")
+    private String lastModifiedBy;
 
     /**
      * 创建时间
      */
+    @Schema(title = "创建时间")
     @CreatedDate
-    private LocalDateTime createTime;
+    @Column(name = "created_date", nullable = false)
+    @JsonProperty("created_date")
+    private LocalDateTime createdDate;
 
     /**
      * 更新时间
      */
+    @Schema(title = "更新时间")
     @LastModifiedDate
-    private LocalDateTime updateTime;
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    @Column(name = "last_modified_date")
+    @JsonProperty("last_modified_date")
+    private LocalDateTime lastModifiedDate;
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getClientId() {
@@ -188,12 +230,12 @@ public class SysOauthClientDetails implements Serializable {
         this.refreshTokenValidity = refreshTokenValidity;
     }
 
-    public String getAdditionalInformation() {
-        return additionalInformation;
+    public String getAdditionalInfo() {
+        return additionalInfo;
     }
 
-    public void setAdditionalInformation(String additionalInformation) {
-        this.additionalInformation = additionalInformation;
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 
     public String getAutoApprove() {
@@ -204,12 +246,12 @@ public class SysOauthClientDetails implements Serializable {
         this.autoApprove = autoApprove;
     }
 
-    public String getDelFlag() {
-        return delFlag;
+    public String getDeleted() {
+        return deleted;
     }
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
     }
 
     public String getCreateBy() {
@@ -220,49 +262,62 @@ public class SysOauthClientDetails implements Serializable {
         this.createBy = createBy;
     }
 
-    public String getUpdateBy() {
-        return updateBy;
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
+    public LocalDateTime getLastModifiedDate() {
+        return lastModifiedDate;
     }
 
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SysOauthClientDetails that = (SysOauthClientDetails) o;
+        return Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(clientSecret, that.clientSecret) && Objects.equals(resourceIds, that.resourceIds) && Objects.equals(authorizedGrantTypes, that.authorizedGrantTypes) && Objects.equals(webServerRedirectUri, that.webServerRedirectUri) && Objects.equals(authorities, that.authorities) && Objects.equals(accessTokenValidity, that.accessTokenValidity) && Objects.equals(refreshTokenValidity, that.refreshTokenValidity) && Objects.equals(additionalInfo, that.additionalInfo) && Objects.equals(autoApprove, that.autoApprove) && Objects.equals(deleted, that.deleted) && Objects.equals(createBy, that.createBy) && Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, clientId, clientSecret, resourceIds, authorizedGrantTypes, webServerRedirectUri, authorities, accessTokenValidity, refreshTokenValidity, additionalInfo, autoApprove, deleted, createBy, lastModifiedBy, createdDate, lastModifiedDate);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", SysOauthClientDetails.class.getSimpleName() + "[", "]")
-                .add("id='" + id + "'")
-                .add("clientId='" + clientId + "'")
-                .add("clientSecret='" + clientSecret + "'")
-                .add("resourceIds='" + resourceIds + "'")
-                .add("authorizedGrantTypes=" + authorizedGrantTypes)
-                .add("webServerRedirectUri='" + webServerRedirectUri + "'")
-                .add("authorities='" + authorities + "'")
-                .add("accessTokenValidity=" + accessTokenValidity)
-                .add("refreshTokenValidity=" + refreshTokenValidity)
-                .add("additionalInformation='" + additionalInformation + "'")
-                .add("autoApprove='" + autoApprove + "'")
-                .add("delFlag='" + delFlag + "'")
-                .add("createBy='" + createBy + "'")
-                .add("updateBy='" + updateBy + "'")
-                .add("createTime=" + createTime)
-                .add("updateTime=" + updateTime)
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("clientId", clientId)
+                .add("clientSecret", clientSecret)
+                .add("resourceIds", resourceIds)
+                .add("authorizedGrantTypes", authorizedGrantTypes)
+                .add("webServerRedirectUri", webServerRedirectUri)
+                .add("authorities", authorities)
+                .add("accessTokenValidity", accessTokenValidity)
+                .add("refreshTokenValidity", refreshTokenValidity)
+                .add("additionalInfo", additionalInfo)
+                .add("autoApprove", autoApprove)
+                .add("deleted", deleted)
+                .add("createBy", createBy)
+                .add("lastModifiedBy", lastModifiedBy)
+                .add("createdDate", createdDate)
+                .add("lastModifiedDate", lastModifiedDate)
                 .toString();
     }
 }
