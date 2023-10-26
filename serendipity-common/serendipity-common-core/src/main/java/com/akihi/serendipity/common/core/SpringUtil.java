@@ -1,5 +1,6 @@
 package com.akihi.serendipity.common.core;
 
+import jakarta.annotation.Nonnull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -22,7 +23,7 @@ public class SpringUtil implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(@Nonnull ApplicationContext applicationContext) throws BeansException {
         if(SpringUtil.applicationContext == null) {
             SpringUtil.applicationContext = applicationContext;
         }

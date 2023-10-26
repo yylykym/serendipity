@@ -14,7 +14,7 @@
  * this software without specific prior written permission.
  * Author: lengleng (wangiegie@gmail.com)
  */
-package com.serendipity.common.swagger.support;
+package com.akihi.serendipity.common.swagger.support;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

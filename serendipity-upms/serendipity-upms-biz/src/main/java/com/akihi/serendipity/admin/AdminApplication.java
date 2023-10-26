@@ -1,6 +1,6 @@
-package com.akihi.serendipity.umps;
+package com.akihi.serendipity.admin;
 
-import com.serendipity.common.swagger.annotation.EnableDoc;
+import com.akihi.serendipity.common.swagger.annotation.EnableDoc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableDoc("admin")

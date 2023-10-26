@@ -1,5 +1,6 @@
 package com.akihi.serendipity.admin.api.domain;
 
+import com.akihi.serendipity.common.core.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,10 +17,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Schema(name = "客户端详情")
-@Entity(name = "sys_oauth_client_details")
-public class SysOauthClientDetails implements Serializable {
+@Entity
+@Table(name = "sys_oauth_client_details")
+public class SysOauthClientDetails extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -122,41 +125,6 @@ public class SysOauthClientDetails implements Serializable {
     @JsonProperty("deleted")
     private String deleted = "0";
 
-    /**
-     * 创建人
-     */
-    @Schema(title = "创建人")
-    @CreatedBy
-    @Column(name = "create_by", nullable = false)
-    @JsonProperty("create_by")
-    private String createBy;
-
-    /**
-     * 修改人
-     */
-    @Schema(title = "修改人")
-    @LastModifiedBy
-    @Column(name = "last_modified_by", nullable = false)
-    @JsonProperty("last_modified_by")
-    private String lastModifiedBy;
-
-    /**
-     * 创建时间
-     */
-    @Schema(title = "创建时间")
-    @CreatedDate
-    @Column(name = "created_date", nullable = false)
-    @JsonProperty("created_date")
-    private LocalDateTime createdDate;
-
-    /**
-     * 更新时间
-     */
-    @Schema(title = "更新时间")
-    @LastModifiedDate
-    @Column(name = "last_modified_date")
-    @JsonProperty("last_modified_date")
-    private LocalDateTime lastModifiedDate;
 
     public String getId() {
         return id;
@@ -254,70 +222,35 @@ public class SysOauthClientDetails implements Serializable {
         this.deleted = deleted;
     }
 
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         SysOauthClientDetails that = (SysOauthClientDetails) o;
-        return Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(clientSecret, that.clientSecret) && Objects.equals(resourceIds, that.resourceIds) && Objects.equals(authorizedGrantTypes, that.authorizedGrantTypes) && Objects.equals(webServerRedirectUri, that.webServerRedirectUri) && Objects.equals(authorities, that.authorities) && Objects.equals(accessTokenValidity, that.accessTokenValidity) && Objects.equals(refreshTokenValidity, that.refreshTokenValidity) && Objects.equals(additionalInfo, that.additionalInfo) && Objects.equals(autoApprove, that.autoApprove) && Objects.equals(deleted, that.deleted) && Objects.equals(createBy, that.createBy) && Objects.equals(lastModifiedBy, that.lastModifiedBy) && Objects.equals(createdDate, that.createdDate) && Objects.equals(lastModifiedDate, that.lastModifiedDate);
+        return Objects.equals(id, that.id) && Objects.equals(clientId, that.clientId) && Objects.equals(clientSecret, that.clientSecret) && Objects.equals(resourceIds, that.resourceIds) && Objects.equals(authorizedGrantTypes, that.authorizedGrantTypes) && Objects.equals(webServerRedirectUri, that.webServerRedirectUri) && Objects.equals(authorities, that.authorities) && Objects.equals(accessTokenValidity, that.accessTokenValidity) && Objects.equals(refreshTokenValidity, that.refreshTokenValidity) && Objects.equals(additionalInfo, that.additionalInfo) && Objects.equals(autoApprove, that.autoApprove) && Objects.equals(deleted, that.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, clientId, clientSecret, resourceIds, authorizedGrantTypes, webServerRedirectUri, authorities, accessTokenValidity, refreshTokenValidity, additionalInfo, autoApprove, deleted, createBy, lastModifiedBy, createdDate, lastModifiedDate);
+        return Objects.hash(super.hashCode(), id, clientId, clientSecret, resourceIds, authorizedGrantTypes, webServerRedirectUri, authorities, accessTokenValidity, refreshTokenValidity, additionalInfo, autoApprove, deleted);
     }
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("id", id)
-                .add("clientId", clientId)
-                .add("clientSecret", clientSecret)
-                .add("resourceIds", resourceIds)
-                .add("authorizedGrantTypes", authorizedGrantTypes)
-                .add("webServerRedirectUri", webServerRedirectUri)
-                .add("authorities", authorities)
-                .add("accessTokenValidity", accessTokenValidity)
-                .add("refreshTokenValidity", refreshTokenValidity)
-                .add("additionalInfo", additionalInfo)
-                .add("autoApprove", autoApprove)
-                .add("deleted", deleted)
-                .add("createBy", createBy)
-                .add("lastModifiedBy", lastModifiedBy)
-                .add("createdDate", createdDate)
-                .add("lastModifiedDate", lastModifiedDate)
+        return new StringJoiner(", ", SysOauthClientDetails.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("clientId='" + clientId + "'")
+                .add("clientSecret='" + clientSecret + "'")
+                .add("resourceIds='" + resourceIds + "'")
+                .add("authorizedGrantTypes=" + authorizedGrantTypes)
+                .add("webServerRedirectUri='" + webServerRedirectUri + "'")
+                .add("authorities='" + authorities + "'")
+                .add("accessTokenValidity=" + accessTokenValidity)
+                .add("refreshTokenValidity=" + refreshTokenValidity)
+                .add("additionalInfo='" + additionalInfo + "'")
+                .add("autoApprove='" + autoApprove + "'")
+                .add("deleted='" + deleted + "'")
                 .toString();
     }
 }

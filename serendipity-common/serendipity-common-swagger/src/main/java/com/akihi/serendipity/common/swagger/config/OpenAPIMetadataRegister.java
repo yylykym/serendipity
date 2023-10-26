@@ -1,4 +1,4 @@
-package com.serendipity.common.swagger.config;
+package com.akihi.serendipity.common.swagger.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;

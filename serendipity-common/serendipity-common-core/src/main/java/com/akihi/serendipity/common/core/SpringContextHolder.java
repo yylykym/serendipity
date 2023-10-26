@@ -16,6 +16,7 @@
 
 package com.akihi.serendipity.common.core;
 
+import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
@@ -26,8 +27,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
- * @author lengleng
- * @date 2019/2/1 Spring 工具类
+  * spring 上下文工具类
  */
 @Service
 @Lazy(false)
@@ -35,7 +35,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
 	private static ApplicationContext applicationContext = null;
 
-	private static Logger log = LoggerFactory.getLogger(SpringContextHolder.class);
+	private static final Logger log = LoggerFactory.getLogger(SpringContextHolder.class);
 
 	/**
 	 * 取得存储在静态变量中的ApplicationContext.
@@ -48,14 +48,13 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 * 实现ApplicationContextAware接口, 注入Context到静态变量中.
 	 */
 	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) {
+	public void setApplicationContext(@Nonnull ApplicationContext applicationContext) {
 		SpringContextHolder.applicationContext = applicationContext;
 	}
 
 	/**
 	 * 从静态变量applicationContext中取得Bean, 自动转型为所赋值对象的类型.
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T getBean(String name) {
 		return (T) applicationContext.getBean(name);
 	}
@@ -72,14 +71,14 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 	 */
 	public static void clearHolder() {
 		if (log.isDebugEnabled()) {
-			log.debug("清除SpringContextHolder中的ApplicationContext:" + applicationContext);
+			log.debug("清除SpringContextHolder中的ApplicationContext:{}" , applicationContext);
 		}
 		applicationContext = null;
 	}
 
 	/**
 	 * 发布事件
-	 * @param event
+	 * @param event 事件
 	 */
 	public static void publishEvent(ApplicationEvent event) {
 		if (applicationContext == null) {

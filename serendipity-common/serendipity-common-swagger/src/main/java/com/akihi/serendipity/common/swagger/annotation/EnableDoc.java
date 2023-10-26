@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.serendipity.common.swagger.annotation;
+package com.akihi.serendipity.common.swagger.annotation;
 
-import com.serendipity.common.swagger.config.OpenAPIDefinitionImportSelector;
-import com.serendipity.common.swagger.support.SwaggerProperties;
+import com.akihi.serendipity.common.swagger.config.OpenAPIDefinitionImportSelector;
+import com.akihi.serendipity.common.swagger.support.SwaggerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 

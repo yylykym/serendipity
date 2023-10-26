@@ -17,6 +17,7 @@
         <module>serendipity-common-core</module>
         <module>serendipity-common-swagger</module>
         <module>serendipity-common-log</module>
+        <module>serendipity-common-jpa</module>
     </modules>
 
 

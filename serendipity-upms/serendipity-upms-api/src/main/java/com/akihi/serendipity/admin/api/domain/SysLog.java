@@ -1,5 +1,6 @@
 package com.akihi.serendipity.admin.api.domain;
 
+import com.akihi.serendipity.common.core.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.MoreObjects;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -13,10 +14,12 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Schema(name = "日志")
-@Entity(name = "sys_log")
-public class SysLog implements Serializable {
+@Entity
+@Table(name = "sys_log")
+public class SysLog extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -47,32 +50,6 @@ public class SysLog implements Serializable {
     @JsonProperty("title")
     private String title;
 
-    /**
-     * 创建者
-     */
-    @Schema(title = "创建者")
-    @Column(name = "create_by")
-    @CreatedBy
-    @JsonProperty("create_by")
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @Schema(title = "创建时间")
-    @Column(name = "create_date")
-    @CreatedDate
-    @JsonProperty("create_date")
-    private LocalDateTime createdDate;
-
-    /**
-     * 更新时间
-     */
-    @Schema(title = "修改时间")
-    @Column(name = "last_modified_date")
-    @LastModifiedDate
-    @JsonProperty("last_modified_date")
-    private LocalDateTime lastModifiedDate;
 
     /**
      * 操作IP地址
@@ -139,7 +116,6 @@ public class SysLog implements Serializable {
     private String serviceId;
 
 
-
     public String getId() {
         return id;
     }
@@ -162,30 +138,6 @@ public class SysLog implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
     }
 
     public String getRemoteAddr() {
@@ -256,32 +208,30 @@ public class SysLog implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         SysLog sysLog = (SysLog) o;
-        return Objects.equals(id, sysLog.id) && Objects.equals(logType, sysLog.logType) && Objects.equals(title, sysLog.title) && Objects.equals(createBy, sysLog.createBy) && Objects.equals(createdDate, sysLog.createdDate) && Objects.equals(lastModifiedDate, sysLog.lastModifiedDate) && Objects.equals(remoteAddr, sysLog.remoteAddr) && Objects.equals(userAgent, sysLog.userAgent) && Objects.equals(requestUri, sysLog.requestUri) && Objects.equals(method, sysLog.method) && Objects.equals(params, sysLog.params) && Objects.equals(executeTime, sysLog.executeTime) && Objects.equals(exception, sysLog.exception) && Objects.equals(serviceId, sysLog.serviceId);
+        return Objects.equals(id, sysLog.id) && Objects.equals(logType, sysLog.logType) && Objects.equals(title, sysLog.title) && Objects.equals(remoteAddr, sysLog.remoteAddr) && Objects.equals(userAgent, sysLog.userAgent) && Objects.equals(requestUri, sysLog.requestUri) && Objects.equals(method, sysLog.method) && Objects.equals(params, sysLog.params) && Objects.equals(executeTime, sysLog.executeTime) && Objects.equals(exception, sysLog.exception) && Objects.equals(serviceId, sysLog.serviceId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, logType, title, createBy, createdDate, lastModifiedDate, remoteAddr, userAgent, requestUri, method, params, executeTime, exception, serviceId);
+        return Objects.hash(super.hashCode(), id, logType, title, remoteAddr, userAgent, requestUri, method, params, executeTime, exception, serviceId);
     }
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("id", id)
-                .add("logType", logType)
-                .add("title", title)
-                .add("createBy", createBy)
-                .add("createdDate", createdDate)
-                .add("lastModifiedDate", lastModifiedDate)
-                .add("remoteAddr", remoteAddr)
-                .add("userAgent", userAgent)
-                .add("requestUri", requestUri)
-                .add("method", method)
-                .add("params", params)
-                .add("executeTime", executeTime)
-                .add("exception", exception)
-                .add("serviceId", serviceId)
+        return new StringJoiner(", ", SysLog.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("logType='" + logType + "'")
+                .add("title='" + title + "'")
+                .add("remoteAddr='" + remoteAddr + "'")
+                .add("userAgent='" + userAgent + "'")
+                .add("requestUri='" + requestUri + "'")
+                .add("method='" + method + "'")
+                .add("params='" + params + "'")
+                .add("executeTime=" + executeTime)
+                .add("exception='" + exception + "'")
+                .add("serviceId='" + serviceId + "'")
                 .toString();
     }
 }

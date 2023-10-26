@@ -14,9 +14,9 @@
  * this software without specific prior written permission.
  * Author: lengleng (wangiegie@gmail.com)
  */
-package com.serendipity.common.swagger.config;
+package com.akihi.serendipity.common.swagger.config;
 
-import com.serendipity.common.swagger.support.SwaggerProperties;
+import com.akihi.serendipity.common.swagger.support.SwaggerProperties;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.OAuthFlow;

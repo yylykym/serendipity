@@ -1,6 +1,6 @@
-package com.serendipity.common.swagger.config;
+package com.akihi.serendipity.common.swagger.config;
 
-import com.serendipity.common.swagger.annotation.EnableDoc;
+import com.akihi.serendipity.common.swagger.annotation.EnableDoc;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
