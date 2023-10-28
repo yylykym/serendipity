@@ -1,1 +1,3 @@
 com.akihi.serendipity.common.core.config.JacksonConfiguration
+com.akihi.serendipity.common.core.handle.GlobalBizExceptionHandler
+com.akihi.serendipity.common.core.SpringContextHolder

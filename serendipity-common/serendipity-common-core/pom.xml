@@ -45,6 +45,11 @@
             <groupId>com.akihi</groupId>
             <artifactId>serendipity-common-swagger</artifactId>
         </dependency>
+        <!--server-api-->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -31,6 +31,12 @@
         <dependency>
             <groupId>com.akihi</groupId>
             <artifactId>serendipity-common-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.servlet</groupId>
+                    <artifactId>jakarta.servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--接口文档-->
         <dependency>

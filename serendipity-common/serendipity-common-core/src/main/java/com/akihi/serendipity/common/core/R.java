@@ -15,7 +15,9 @@ public class R<T> implements Serializable {
 
         private String code;
 
-        private String msg;
+        private String statusCode;
+
+        private String message;
 
         private List<Map<String, String>> errors;
 
@@ -67,11 +69,11 @@ public class R<T> implements Serializable {
         }
 
         public String getMsg() {
-            return msg;
+            return message;
         }
 
-        public R<T> setMsg(String msg) {
-            this.msg = msg;
+        public R<T> setMsg(String message) {
+            this.message = message;
             return this;
         }
 

@@ -32,7 +32,7 @@ public class SerendipityJavaTimeModule extends SimpleModule {
 
         // ======================= 时间反序列化规则 ==============================
         // yyyy-MM-dd HH:mm:ss
-        this.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).withZone(ZoneId.systemDefault())));
+        this.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME));
         // yyyy-MM-dd
         this.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ISO_LOCAL_DATE));
         // HH:mm:ss

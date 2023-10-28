@@ -17,13 +17,20 @@ public class TestController {
     public ResponseEntity<R<String>> res1(@RequestBody SysLog log){
 
         repository.save(log);
-        return ResponseEntity.internalServerError().body(R.ok());
+        return ResponseEntity.ok(R.ok());
     }
 
     @GetMapping
+    @com.akihi.serendipity.common.log.annotation.SysLog("1111")
     public ResponseEntity<R> test2() {
-        int i = 1 / 0;
-        return ResponseEntity.ok(R.ok(repository.findAll()));
+
+
+        try {
+            int i = 1 / 0;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.internalServerError().body(R.ok(repository.findAll()));
     }
 
 
