@@ -49,6 +49,11 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.akihi</groupId>
+                <artifactId>serendipity-common-jpa</artifactId>
+                <version>${serendipity-version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
