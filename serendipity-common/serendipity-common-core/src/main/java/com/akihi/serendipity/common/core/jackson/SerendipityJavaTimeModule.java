@@ -1,5 +1,6 @@
 package com.akihi.serendipity.common.core.jackson;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.PackageVersion;
 import com.fasterxml.jackson.datatype.jsr310.deser.InstantDeserializer;
@@ -29,6 +30,8 @@ public class SerendipityJavaTimeModule extends SimpleModule {
         this.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ISO_LOCAL_TIME));
         // Instant 类型序列化
         this.addSerializer(Instant.class, InstantSerializer.INSTANCE);
+        PropertyNamingStrategies.SnakeCaseStrategy snakeCaseStrategy = new PropertyNamingStrategies.SnakeCaseStrategy();
+        this.setNamingStrategy(snakeCaseStrategy);
 
         // ======================= 时间反序列化规则 ==============================
         // yyyy-MM-dd HH:mm:ss

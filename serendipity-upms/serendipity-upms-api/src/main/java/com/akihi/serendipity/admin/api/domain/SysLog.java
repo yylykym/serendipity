@@ -2,17 +2,11 @@ package com.akihi.serendipity.admin.api.domain;
 
 import com.akihi.serendipity.common.core.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.MoreObjects;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serial;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.StringJoiner;
 

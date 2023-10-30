@@ -106,7 +106,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "扩展信息")
     @Column(name = "additional_info", nullable = false)
-    @JsonProperty("additional_info")
     private String additionalInfo;
 
     /**
@@ -114,7 +113,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "是否自动放行")
     @Column(name = "auto_approve", nullable = false)
-    @JsonProperty("auto_approve")
     private String autoApprove;
 
     /**
