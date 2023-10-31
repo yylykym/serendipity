@@ -1,7 +1,6 @@
 package com.akihi.serendipity.admin.api.domain;
 
 import com.akihi.serendipity.common.core.entity.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -23,7 +22,8 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "日志ID")
     @Id
-    @Column(name = "id", length = 64)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", length = 32)
     private String id;
 
     /**
@@ -31,8 +31,7 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "日志类型")
     @NotBlank(message = "日志类型不能为空")
-    @Column(name = "log_type", nullable = false)
-    @JsonProperty("log_type")
+    @Column(nullable = false)
     private String logType = "0";
 
     /**
@@ -40,8 +39,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "日志标题")
     @NotBlank(message = "日志标题不能为空")
-    @Column(name = "title")
-    @JsonProperty("title")
     private String title;
 
 
@@ -49,16 +46,12 @@ public class SysLog extends BaseEntity {
      * 操作IP地址
      */
     @Schema(title = "操作IP地址")
-    @Column(name = "remote_addr")
-    @JsonProperty("remote_addr")
     private String remoteAddr;
 
     /**
      * 用户代理
      */
     @Schema(title = "用户代理")
-    @Column(name = "user_agent")
-    @JsonProperty("user_agent")
     private String userAgent;
 
     /**
@@ -66,7 +59,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "请求URI")
     @Column(name = "request_uri")
-    @JsonProperty("request_uri")
     private String requestUri;
 
     /**
@@ -74,7 +66,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "操作方式")
     @Column(name = "method")
-    @JsonProperty("method")
     private String method;
 
     /**
@@ -82,7 +73,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "操作提交的数据")
     @Column(name = "params")
-    @JsonProperty("params")
     private String params;
 
     /**
@@ -90,7 +80,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "执行时间")
     @Column(name = "execute_time")
-    @JsonProperty("execute_time")
     private Long executeTime;
 
     /**
@@ -98,7 +87,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "异常信息")
     @Column(name = "exception")
-    @JsonProperty("exception")
     private String exception;
 
     /**
@@ -106,7 +94,6 @@ public class SysLog extends BaseEntity {
      */
     @Schema(title = "服务ID")
     @Column(name = "service_id")
-    @JsonProperty("service_id")
     private String serviceId;
 
 

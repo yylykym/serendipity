@@ -36,7 +36,6 @@ public class SysOauthClientDetails extends BaseEntity {
     @Schema(title = "客户端ID")
     @Column(name = "client_id", nullable = false)
     @NotBlank(message = "client_id 不能为空")
-    @JsonProperty("client_id")
     private String clientId;
 
     /**
@@ -45,7 +44,6 @@ public class SysOauthClientDetails extends BaseEntity {
     @Schema(title = "客户端密钥")
     @Column(name = "client_secret", nullable = false)
     @NotBlank(message = "client_secret 不能为空")
-    @JsonProperty("client_secret")
     private String clientSecret;
 
     /**
@@ -53,7 +51,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "资源ID")
     @Column(name = "resource_ids", nullable = false)
-    @JsonProperty("resource_ids")
     private String resourceIds;
 
     /**
@@ -66,7 +63,6 @@ public class SysOauthClientDetails extends BaseEntity {
     @Schema(title = "授权方式[A,B,C]")
     @Lob
     @Column(name = "authorized_grant_types", nullable = false)
-    @JsonProperty("authorized_grant_types")
     private List<String> authorizedGrantTypes = new ArrayList<>();
 
     /**
@@ -74,7 +70,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "回调地址")
     @Column(name = "web_server_redirect_uri", nullable = false)
-    @JsonProperty("web_server_redirect_uri")
     private String webServerRedirectUri = "";
 
     /**
@@ -82,7 +77,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "权限")
     @Column(name = "authorities", nullable = false)
-    @JsonProperty("authorities")
     private String authorities = "";
 
     /**
@@ -90,7 +84,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "请求令牌有效时间")
     @Column(name = "access_token_validity", nullable = false)
-    @JsonProperty("access_token_validity")
     private Integer accessTokenValidity;
 
     /**
@@ -98,7 +91,6 @@ public class SysOauthClientDetails extends BaseEntity {
      */
     @Schema(title = "刷新令牌有效时间")
     @Column(name = "refresh_token_validity", nullable = false)
-    @JsonProperty("refresh_token_validity")
     private Integer refreshTokenValidity;
 
     /**
