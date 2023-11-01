@@ -45,8 +45,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import java.util.Arrays;
 
 /**
- * @author lengleng
- * @date 2022/5/27
  *
  * 认证服务器配置
  */
