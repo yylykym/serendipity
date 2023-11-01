@@ -1,4 +1,4 @@
-package com.akihi.serendipity.common.core;
+package com.akihi.serendipity.common.core.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

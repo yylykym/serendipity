@@ -1,8 +1,6 @@
 package com.akihi.serendipity.support.handler;
 
-import com.akihi.serendipity.common.core.SpringContextHolder;
 import com.akihi.serendipity.common.security.component.CustomOAuth2AccessTokenResponseHttpMessageConverter;
-import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

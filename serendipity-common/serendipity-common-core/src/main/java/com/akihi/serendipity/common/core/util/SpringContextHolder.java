@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.akihi.serendipity.common.core;
+package com.akihi.serendipity.common.core.util;
 
 import jakarta.annotation.Nonnull;
 import org.slf4j.Logger;

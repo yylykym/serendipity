@@ -16,12 +16,9 @@
 
 package com.akihi.serendipity.common.log.util;
 
-import com.akihi.serendipity.common.core.SpringContextHolder;
 import com.akihi.serendipity.common.core.contant.SecurityConstants;
-import com.akihi.serendipity.common.log.config.LogProperties;
 import com.akihi.serendipity.common.log.event.SysLogEventSource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.core.StandardReflectionParameterNameDiscoverer;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
@@ -35,7 +32,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.lang.reflect.Method;
-import java.util.Map;
 import java.util.Objects;
 
 /**

@@ -16,7 +16,7 @@
 
 package com.akihi.serendipity.gateway.hanlde;
 
-import com.akihi.serendipity.common.core.R;
+import com.akihi.serendipity.common.core.util.R;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Nonnull;

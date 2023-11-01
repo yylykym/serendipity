@@ -1,6 +1,6 @@
 package com.akihi.serendipity.common.security.component;
 
-import com.akihi.serendipity.common.core.SpringContextHolder;
+import com.akihi.serendipity.common.core.util.SpringContextHolder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.convert.converter.Converter;

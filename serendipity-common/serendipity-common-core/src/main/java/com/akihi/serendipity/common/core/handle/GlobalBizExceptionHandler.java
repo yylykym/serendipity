@@ -1,6 +1,7 @@
 package com.akihi.serendipity.common.core.handle;
 
-import com.akihi.serendipity.common.core.R;
+import com.akihi.serendipity.common.core.util.R;
+import com.akihi.serendipity.common.core.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -13,10 +14,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
 import java.util.List;
 
-@Order(10000)
+@Order
 @RestControllerAdvice
 public class GlobalBizExceptionHandler {
 
@@ -75,7 +75,7 @@ public class GlobalBizExceptionHandler {
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public R<?> handleBodyValidException(MethodArgumentNotValidException exception) {
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        log.warn("参数绑定异常,ex = {}", fieldErrors.get(0).getDefaultMessage());
+        log.error("参数绑定异常,ex = {}", fieldErrors.get(0).getDefaultMessage());
         return R.failed(String.format("%s %s", fieldErrors.get(0).getField(), fieldErrors.get(0).getDefaultMessage()));
     }
 
@@ -88,7 +88,19 @@ public class GlobalBizExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<?> bindExceptionHandler(BindException exception) {
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        log.warn("参数绑定异常,ex = {}", fieldErrors.get(0).getDefaultMessage());
+        log.error("参数绑定异常,ex = {}", fieldErrors.get(0).getDefaultMessage());
         return R.failed(fieldErrors.get(0).getDefaultMessage());
+    }
+
+    /**
+     * Resource Not Found Exception (资源不存在异常)
+     * @param exception
+     * @return R
+     */
+    @ExceptionHandler({ BindException.class })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public R<?> bindExceptionHandler(ResourceNotFoundException exception) {
+        log.error("资源不存在,ex = {}", exception.getMessage());
+        return R.failed(exception.getMessage());
     }
 }

@@ -1,6 +1,6 @@
 package com.akihi.serendipity.support.handler;
 
-import com.akihi.serendipity.common.core.R;
+import com.akihi.serendipity.common.core.util.R;
 import com.akihi.serendipity.common.core.contant.SecurityConstants;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

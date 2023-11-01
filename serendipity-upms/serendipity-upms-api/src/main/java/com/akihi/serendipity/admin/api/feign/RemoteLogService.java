@@ -1,7 +1,7 @@
 package com.akihi.serendipity.admin.api.feign;
 
 import com.akihi.serendipity.admin.api.domain.SysLog;
-import com.akihi.serendipity.common.core.R;
+import com.akihi.serendipity.common.core.util.R;
 import com.akihi.serendipity.common.core.contant.SecurityConstants;
 import com.akihi.serendipity.common.core.contant.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;

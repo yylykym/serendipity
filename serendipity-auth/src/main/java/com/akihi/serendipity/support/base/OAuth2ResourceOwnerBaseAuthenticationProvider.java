@@ -1,12 +1,9 @@
 package com.akihi.serendipity.support.base;
 
-import com.akihi.serendipity.common.core.SpringUtil;
 import com.akihi.serendipity.common.security.util.OAuth2ErrorCodesExpand;
 import com.akihi.serendipity.common.security.util.ScopeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.MessageSource;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -32,7 +29,8 @@ import java.util.function.Supplier;
 
 /**
  *
- * 处理自定义授权
+ * @description 处理自定义授权
+ *
  */
 public abstract class OAuth2ResourceOwnerBaseAuthenticationProvider<T extends OAuth2ResourceOwnerBaseAuthenticationToken>
 		implements AuthenticationProvider {

@@ -1,21 +1,10 @@
-package com.akihi.serendipity.common.core;
+package com.akihi.serendipity.common.core.util;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationEvent;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.ResolvableType;
 import org.springframework.stereotype.Component;
-
-import java.lang.reflect.ParameterizedType;
-import java.util.Arrays;
-import java.util.Map;
 
 @Component
 public class SpringUtil implements ApplicationContextAware {

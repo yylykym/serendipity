@@ -53,14 +53,14 @@ public class SysUser extends BaseEntity {
     @JsonIgnore
     @Schema(description = "删除标记,1:已删除,0:正常")
     @Column(name = "deleted", nullable = false)
-    private Boolean deleted = false;
+    private Boolean deleted = Boolean.FALSE;
 
     /**
      * 锁定标记
      */
     @Schema(description = "锁定标记")
-    @Column(name = "lock_flag", nullable = false)
-    private String lockFlag;
+    @Column(name = "locked", nullable = false)
+    private Boolean locked = Boolean.FALSE;
 
     /**
      * 手机号
@@ -127,12 +127,12 @@ public class SysUser extends BaseEntity {
         this.deleted = deleted;
     }
 
-    public String getLockFlag() {
-        return lockFlag;
+    public Boolean getLocked() {
+        return locked;
     }
 
-    public void setLockFlag(String lockFlag) {
-        this.lockFlag = lockFlag;
+    public void setLockFlag(Boolean locked) {
+        this.locked = locked;
     }
 
     public String getPhone() {
@@ -173,12 +173,12 @@ public class SysUser extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         SysUser sysUser = (SysUser) o;
-        return Objects.equals(id, sysUser.id) && Objects.equals(username, sysUser.username) && Objects.equals(password, sysUser.password) && Objects.equals(salt, sysUser.salt) && Objects.equals(deleted, sysUser.deleted) && Objects.equals(lockFlag, sysUser.lockFlag) && Objects.equals(phone, sysUser.phone) && Objects.equals(avatar, sysUser.avatar) && Objects.equals(nickname, sysUser.nickname) && Objects.equals(email, sysUser.email);
+        return Objects.equals(id, sysUser.id) && Objects.equals(username, sysUser.username) && Objects.equals(password, sysUser.password) && Objects.equals(salt, sysUser.salt) && Objects.equals(deleted, sysUser.deleted) && Objects.equals(locked, sysUser.locked) && Objects.equals(phone, sysUser.phone) && Objects.equals(avatar, sysUser.avatar) && Objects.equals(nickname, sysUser.nickname) && Objects.equals(email, sysUser.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, username, password, salt, deleted, lockFlag, phone, avatar, nickname, email);
+        return Objects.hash(super.hashCode(), id, username, password, salt, deleted, locked, phone, avatar, nickname, email);
     }
 
     @Override
@@ -189,7 +189,7 @@ public class SysUser extends BaseEntity {
                 .add("password='" + password + "'")
                 .add("salt='" + salt + "'")
                 .add("deleted=" + deleted)
-                .add("lockFlag='" + lockFlag + "'")
+                .add("lockFlag='" + locked + "'")
                 .add("phone='" + phone + "'")
                 .add("avatar='" + avatar + "'")
                 .add("nickname='" + nickname + "'")

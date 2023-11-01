@@ -1,7 +1,7 @@
 
 package com.akihi.serendipity.common.log.aspect;
 
-import com.akihi.serendipity.common.core.SpringContextHolder;
+import com.akihi.serendipity.common.core.util.SpringContextHolder;
 import com.akihi.serendipity.common.log.annotation.SysLog;
 import com.akihi.serendipity.common.log.event.SysLogEvent;
 import com.akihi.serendipity.common.log.event.SysLogEventSource;
